@@ -15,7 +15,7 @@
         var b = $scope.listtwo.split(',');
         var c = [];
         for (i=0; i < Math.min(a.length,b.length); i++){
-          c[i] = a[i]+'/'+b[i];
+          c[i] = a[i].trim()+'/'+b[i].trim();
         }
         $scope.resultlist = '{'+c+'}';
       };
