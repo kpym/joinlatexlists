@@ -11,8 +11,8 @@
       $scope.$watch('listtwo', function(){$scope.JoinLists();});
 
       $scope.JoinLists = function(){
-        var a = $scope.listone.split(',');
-        var b = $scope.listtwo.split(',');
+        var a = $scope.listone.trim().replace(/^\{|\}$/g, '').split(',');
+        var b = $scope.listtwo.trim().replace(/^\{|\}$/g, '').split(',');
         var c = [];
         for (i=0; i < Math.min(a.length,b.length); i++){
           c[i] = a[i].trim()+'/'+b[i].trim();
