@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Join LaTeX List</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0/angular.min.js"></script>
+  <script>
+    var app = angular.module("JoinLaTeXLists",[]);
+    app.controller("JoinCtrl", function($scope) {
+      $scope.$watch('listone', function(){$scope.JoinLists();console.log("bingo");});
+      $scope.$watch('listtwo', function(){$scope.JoinLists();});
+
+      $scope.JoinLists = function(){
+        var a = $scope.listone.split(',');
+        var b = $scope.listtwo.split(',');
+        var c = [];
+        for (i=0; i < Math.min(a.length,b.length); i++){
+          c[i] = a[i]+'/'+b[i];
+        }
+        $scope.resultlist = '{'+c+'}';
+      };
+    });
+  </script>
+  <style>
+    .input, .output {
+      margin: 1em;
+      padding: .5em;
+      background-color: #EEE;
+    }
+    textarea {
+      display: block;
+      width: 90%;
+      height: 3em;
+    }
+    .help {
+      color: gray;
+    }
+  </style>
+</head>
+<body ng-app="JoinLaTeXLists" ng-controller="JoinCtrl">
+  Join two pgffor lists :
+  <div class="input">
+    List 1 : <textarea ng-model="listone"></textarea>
+    <div class="help">Ex : 1,2,3</div>
+  </div>
+  <div class="input">
+    List 2 : <textarea ng-model="listtwo"></textarea>
+    <div class="help">Ex : one,two,three</div>
+  </div>
+  <div class="output">
+    Result : <textarea ng-model="resultlist"></textarea>
+    <div class="help">Ex : {1/one,2/two,3/three}</div>
+  </div>
+</body>
+</html>
